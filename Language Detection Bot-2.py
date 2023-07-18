@@ -12,9 +12,28 @@ def detect_non_english_sentence(sentence):
     is_reliable, _, details = cld2.detect(sentence)
     return not is_reliable or details[0][0] != "ENGLISH"
 
+presences = [
+    "Made By Waffieu",
+]
 @client.event
 async def on_ready():
     print(f"Bot logged in as {client.user}")
+
+# Set the bot's activity and status
+    activity = discord.Activity(
+        type=discord.ActivityType.playing,
+        name="Made By Waffieu"
+    )
+    await client.change_presence(activity=activity, status=discord.Status.online)
+
+    presences_cycle = cycle(presences)
+    while True:
+        presence = next(presences_cycle)
+        presence_with_count = presence.replace("{guild_count}", str(len(bot.guilds)))
+        delay = 30  # Delay in seconds, adjust as needed
+        await client.change_presence(activity=discord.Game(name=presence_with_count))
+        await asyncio.sleep(delay)
+
 
 @client.event
 async def on_message(message):
@@ -28,5 +47,5 @@ async def on_message(message):
             await asyncio.sleep(10)
             await message.channel.purge(limit=1)  # Delete the warning message after 10 seconds
 
-client.run('MTA1MDczMzE4ODAxMzYyNTQwNA.GWL6O7.W49GIlPmIV5DosgJdxq4B8juCywJcc9GpdqQwM')
+client.run('your-bot-token')
 
