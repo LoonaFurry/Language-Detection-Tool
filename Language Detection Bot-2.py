@@ -31,7 +31,7 @@ async def on_ready():
     presences_cycle = cycle(presences)
     while True:
         presence = next(presences_cycle)
-        presence_with_count = presence.replace("{guild_count}", str(len(bot.guilds)))
+        presence_with_count = presence.replace("{guild_count}", str(len(client.guilds)))
         delay = 10  # Delay in seconds, adjust as needed
         await client.change_presence(activity=discord.Game(name=presence_with_count))
         await asyncio.sleep(delay)
