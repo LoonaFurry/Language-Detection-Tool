@@ -13,8 +13,12 @@ async def on_message(message):
     if message.author == client.user:
         return
 
+    words = message.content.split()
+    if len(words) == 1:
+        return
+
     try:
-        if detect(message.content) not in ['de', 'en']:
+        if detect(message.content) not in ['en']:
             warning_message = await message.channel.send("Warning: Non-German or Non-English message detected. This message will be deleted in 10 seconds.")
             await message.delete()
             await asyncio.sleep(10)
