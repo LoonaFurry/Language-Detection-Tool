@@ -2,6 +2,7 @@ import pycld2 as cld2
 import discord
 import os
 import asyncio
+from itertools import cycle
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -14,6 +15,7 @@ def detect_non_english_sentence(sentence):
 
 presences = [
     "Made By Waffieu",
+    "Language Detection Bot"
 ]
 @client.event
 async def on_ready():
@@ -30,7 +32,7 @@ async def on_ready():
     while True:
         presence = next(presences_cycle)
         presence_with_count = presence.replace("{guild_count}", str(len(bot.guilds)))
-        delay = 30  # Delay in seconds, adjust as needed
+        delay = 10  # Delay in seconds, adjust as needed
         await client.change_presence(activity=discord.Game(name=presence_with_count))
         await asyncio.sleep(delay)
 
