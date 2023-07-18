@@ -19,4 +19,4 @@ async def on_message(message):
         time.sleep(10)
         await message.channel.purge(limit=1)  # Delete the warning message after 10 seconds
 
-client.run('MTA1MDczMzE4ODAxMzYyNTQwNA.GWKMa3.p-CvUlOCpHIvJDvgBkR0n20iCRjCnrBZdOVa30')
+client.run('Your-Token-Here')
